@@ -17,9 +17,17 @@ namespace Xadrez_console
                     Console.Clear();
                     Tela.PrintTabuleiro(p.Tab);
 
-                    Console.WriteLine();
+                    Console.WriteLine("= = = = = = = = = =");
                     Console.Write("Origem: ");
                     Posicao origem = Tela.GetPosicaoXadrez().ToPosicao();
+
+                    bool[,] posPossivel = p.Tab.peca(origem).MovimentosPossiveis();
+
+
+                    Console.Clear();
+                    Tela.PrintTabuleiro(p.Tab, posPossivel);
+
+                    Console.WriteLine();
                     Console.Write("Destino: ");
                     Posicao destino = Tela.GetPosicaoXadrez().ToPosicao();
                     p.ExecuteMove(origem, destino);
