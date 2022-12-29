@@ -24,6 +24,11 @@ namespace tabuleiro
             QteMovimentos++;
         }
 
+        public void RemoveMove()
+        {
+            QteMovimentos--;
+        }
+
         public bool CheckPossibleMoves()
         {
             bool[,] mat = MovimentosPossiveis();
