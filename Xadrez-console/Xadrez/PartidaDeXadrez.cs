@@ -22,7 +22,7 @@ namespace Xadrez
             Terminada = false;
             Pecas = new HashSet<Peca>();
             PecasCapturadas = new HashSet<Peca>();
-            
+
 
             PrepararPecas();
         }
@@ -70,10 +70,15 @@ namespace Xadrez
             {
                 Xeque = false;
             }
-
-
-            Turno++;
-            MudaJogador();
+            if (EmXequeMate(Adversaria(JogadorAtual)))
+            {
+                Terminada = true;
+            }
+            else
+            {
+                Turno++;
+                MudaJogador();
+            }
         }
 
         public void ValidateOrigin(Posicao pos)
@@ -115,9 +120,9 @@ namespace Xadrez
         public HashSet<Peca> OffGamePieces(Cor cor)
         {
             HashSet<Peca> aux = new HashSet<Peca>();
-            foreach(Peca x in PecasCapturadas)
+            foreach (Peca x in PecasCapturadas)
             {
-                if(x.Cor == cor)
+                if (x.Cor == cor)
                 {
                     aux.Add(x);
                 }
@@ -141,7 +146,7 @@ namespace Xadrez
 
         private Cor Adversaria(Cor cor)
         {
-            if(cor == Cor.Branca)
+            if (cor == Cor.Branca)
             {
                 return Cor.Preta;
             }
@@ -153,9 +158,9 @@ namespace Xadrez
 
         private Peca Rei(Cor cor)
         {
-            foreach(Peca x in InGamePieces(cor))
+            foreach (Peca x in InGamePieces(cor))
             {
-                if(x is Rei)
+                if (x is Rei)
                 {
                     return x;
                 }
@@ -166,19 +171,50 @@ namespace Xadrez
         public bool EmXeque(Cor cor)
         {
             Peca r = Rei(cor);
-            if(r == null)
+            if (r == null)
             {
                 throw new TabuleiroException("Não há rei da cor" + cor + "no tabuleiro!");
             }
-            foreach(Peca x in InGamePieces(Adversaria(cor)))
+            foreach (Peca x in InGamePieces(Adversaria(cor)))
             {
                 bool[,] mat = x.MovimentosPossiveis();
-                if(mat[r.Posicao.Linha, r.Posicao.Coluna])
+                if (mat[r.Posicao.Linha, r.Posicao.Coluna])
                 {
                     return true;
                 }
             }
             return false;
+        }
+
+        public bool EmXequeMate(Cor cor)
+        {
+            if (!EmXeque(cor))
+            {
+                return false;
+            }
+            foreach (Peca x in InGamePieces(cor))
+            {
+                bool[,] mat = x.MovimentosPossiveis();
+                for (int i = 0; i < Tab.Linhas; i++)
+                {
+                    for (int j = 0; j < Tab.Colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = x.Posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = ExecuteMove(x.Posicao, destino);
+                            bool testeXeque = EmXeque(cor);
+                            UndoMove(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         public void AddNewPiece(char coluna, int linha, Peca peca)
@@ -201,7 +237,7 @@ namespace Xadrez
             AddNewPiece('d', 7, new Torre(Tab, Cor.Preta));
             AddNewPiece('e', 7, new Torre(Tab, Cor.Preta));
             AddNewPiece('e', 8, new Torre(Tab, Cor.Preta));
-            AddNewPiece('d', 8, new Rei(Tab, Cor.Preta));
+            AddNewPiece('a', 8, new Rei(Tab, Cor.Preta));
         }
     }
 }
