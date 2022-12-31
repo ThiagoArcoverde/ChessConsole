@@ -225,19 +225,42 @@ namespace Xadrez
 
         private void PrepararPecas()
         {
-            AddNewPiece('c', 1, new Torre(Tab, Cor.Branca));
-            AddNewPiece('c', 2, new Torre(Tab, Cor.Branca));
-            AddNewPiece('d', 2, new Torre(Tab, Cor.Branca));
-            AddNewPiece('e', 2, new Torre(Tab, Cor.Branca));
-            AddNewPiece('e', 1, new Torre(Tab, Cor.Branca));
-            AddNewPiece('d', 1, new Rei(Tab, Cor.Branca));
+            //Peças brancas
+            AddNewPiece('a', 1, new Torre(Tab, Cor.Branca));
+            AddNewPiece('b', 1, new Cavalo(Tab, Cor.Branca));
+            AddNewPiece('c', 1, new Bispo(Tab, Cor.Branca));
+            AddNewPiece('d', 1, new Dama(Tab, Cor.Branca));
+            AddNewPiece('e', 1, new Rei(Tab, Cor.Branca));
+            AddNewPiece('f', 1, new Bispo(Tab, Cor.Branca));
+            AddNewPiece('g', 1, new Cavalo(Tab, Cor.Branca));
+            AddNewPiece('h', 1, new Torre(Tab, Cor.Branca));
+            AddNewPiece('a', 2, new Peao(Tab, Cor.Branca));
+            AddNewPiece('b', 2, new Peao(Tab, Cor.Branca));
+            AddNewPiece('c', 2, new Peao(Tab, Cor.Branca));
+            AddNewPiece('d', 2, new Peao(Tab, Cor.Branca));
+            AddNewPiece('e', 2, new Peao(Tab, Cor.Branca));
+            AddNewPiece('f', 2, new Peao(Tab, Cor.Branca));
+            AddNewPiece('g', 2, new Peao(Tab, Cor.Branca));
+            AddNewPiece('h', 2, new Peao(Tab, Cor.Branca));
 
-            AddNewPiece('c', 7, new Torre(Tab, Cor.Preta));
-            AddNewPiece('c', 8, new Torre(Tab, Cor.Preta));
-            AddNewPiece('d', 7, new Torre(Tab, Cor.Preta));
-            AddNewPiece('e', 7, new Torre(Tab, Cor.Preta));
-            AddNewPiece('e', 8, new Torre(Tab, Cor.Preta));
-            AddNewPiece('a', 8, new Rei(Tab, Cor.Preta));
+            //Peças Pretas
+            AddNewPiece('a', 8, new Torre(Tab, Cor.Preta));
+            AddNewPiece('b', 8, new Cavalo(Tab, Cor.Preta));
+            AddNewPiece('c', 8, new Bispo(Tab, Cor.Preta));
+            AddNewPiece('d', 8, new Dama(Tab, Cor.Preta));
+            AddNewPiece('e', 8, new Rei(Tab, Cor.Preta));
+            AddNewPiece('f', 8, new Bispo(Tab, Cor.Preta));
+            AddNewPiece('g', 8, new Cavalo(Tab, Cor.Preta));
+            AddNewPiece('h', 8, new Torre(Tab, Cor.Preta));
+            AddNewPiece('a', 7, new Peao(Tab, Cor.Preta));
+            AddNewPiece('b', 7, new Peao(Tab, Cor.Preta));
+            AddNewPiece('c', 7, new Peao(Tab, Cor.Preta));
+            AddNewPiece('d', 7, new Peao(Tab, Cor.Preta));
+            AddNewPiece('e', 7, new Peao(Tab, Cor.Preta));
+            AddNewPiece('f', 7, new Peao(Tab, Cor.Preta));
+            AddNewPiece('g', 7, new Peao(Tab, Cor.Preta));
+            AddNewPiece('h', 7, new Peao(Tab, Cor.Preta));
+
         }
     }
 }
