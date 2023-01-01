@@ -22,7 +22,7 @@ namespace Xadrez
 
         public override bool[,] MovimentosPossiveis()
         {
-            bool[,] mat = new bool[Posicao.Coluna, Posicao.Linha];
+            bool[,] mat = new bool[Tab.Linhas, Tab.Colunas];
             Posicao pos = new Posicao(0, 0);
 
             //Acima

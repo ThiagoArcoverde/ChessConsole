@@ -66,12 +66,12 @@ namespace Xadrez
                     mat[pos.Linha, pos.Coluna] = true;
                 }
                 pos.SetValue(Posicao.Linha + 1, Posicao.Coluna - 1);
-                if (Tab.PosicaoValida(pos) && livre(pos))
+                if (Tab.PosicaoValida(pos) && ExisteInimigo(pos))
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }
                 pos.SetValue(Posicao.Linha + 1, Posicao.Coluna + 1);
-                if (Tab.PosicaoValida(pos) && livre(pos))
+                if (Tab.PosicaoValida(pos) && ExisteInimigo(pos))
                 {
                     mat[pos.Linha, pos.Coluna] = true;
                 }
