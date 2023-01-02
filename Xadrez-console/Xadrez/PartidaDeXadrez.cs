@@ -38,6 +38,26 @@ namespace Xadrez
             {
                 PecasCapturadas.Add(pecaCapturada);
             }
+
+            // #jogadaespecial roque pequeno
+            if(p is Rei && destino.Coluna == origem.Coluna + 2)
+            {
+                Posicao OrigemT = new Posicao(origem.Linha, origem.Coluna + 3);
+                Posicao DestinoT = new Posicao(origem.Linha, origem.Coluna + 1);
+                Peca t = Tab.RemovePeca(OrigemT);
+                t.AddMove();
+                Tab.SetPeca(t, DestinoT);
+            }
+
+            // #jogadaespecial roque grande
+            if (p is Rei && destino.Coluna == origem.Coluna - 2)
+            {
+                Posicao OrigemT = new Posicao(origem.Linha, origem.Coluna - 4);
+                Posicao DestinoT = new Posicao(origem.Linha, origem.Coluna - 1);
+                Peca t = Tab.RemovePeca(OrigemT);
+                t.AddMove();
+                Tab.SetPeca(t, DestinoT);
+            }
             return pecaCapturada;
         }
 
@@ -51,6 +71,26 @@ namespace Xadrez
                 PecasCapturadas.Remove(pecaCapturada);
             }
             Tab.SetPeca(p, origem);
+
+            // #jogadaespecial roque pequeno
+            if (p is Rei && destino.Coluna == origem.Coluna + 2)
+            {
+                Posicao OrigemT = new Posicao(origem.Linha, origem.Coluna + 3);
+                Posicao DestinoT = new Posicao(origem.Linha, origem.Coluna + 1);
+                Peca t = Tab.RemovePeca(DestinoT);
+                t.RemoveMove();
+                Tab.SetPeca(t, OrigemT);
+            }
+
+            // #jogadaespecial roque grande
+            if (p is Rei && destino.Coluna == origem.Coluna - 2)
+            {
+                Posicao OrigemT = new Posicao(origem.Linha, origem.Coluna - 4);
+                Posicao DestinoT = new Posicao(origem.Linha, origem.Coluna - 1);
+                Peca t = Tab.RemovePeca(DestinoT);
+                t.RemoveMove();
+                Tab.SetPeca(t, OrigemT);
+            }
         }
 
         public void RealizaJogada(Posicao origem, Posicao destino)
@@ -230,7 +270,7 @@ namespace Xadrez
             AddNewPiece('b', 1, new Cavalo(Tab, Cor.Branca));
             AddNewPiece('c', 1, new Bispo(Tab, Cor.Branca));
             AddNewPiece('d', 1, new Dama(Tab, Cor.Branca));
-            AddNewPiece('e', 1, new Rei(Tab, Cor.Branca));
+            AddNewPiece('e', 1, new Rei(Tab, Cor.Branca, this));
             AddNewPiece('f', 1, new Bispo(Tab, Cor.Branca));
             AddNewPiece('g', 1, new Cavalo(Tab, Cor.Branca));
             AddNewPiece('h', 1, new Torre(Tab, Cor.Branca));
@@ -248,7 +288,7 @@ namespace Xadrez
             AddNewPiece('b', 8, new Cavalo(Tab, Cor.Preta));
             AddNewPiece('c', 8, new Bispo(Tab, Cor.Preta));
             AddNewPiece('d', 8, new Dama(Tab, Cor.Preta));
-            AddNewPiece('e', 8, new Rei(Tab, Cor.Preta));
+            AddNewPiece('e', 8, new Rei(Tab, Cor.Preta, this));
             AddNewPiece('f', 8, new Bispo(Tab, Cor.Preta));
             AddNewPiece('g', 8, new Cavalo(Tab, Cor.Preta));
             AddNewPiece('h', 8, new Torre(Tab, Cor.Preta));
